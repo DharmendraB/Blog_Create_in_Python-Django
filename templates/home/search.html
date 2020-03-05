@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} dbTechnical Search Result {% endblock %}
+{% block blogactive %}{% endblock blogactive %}
+{% block body %} 
+
+<div class="container mt-2">  
+    <h3>Your Rearch Result: </h3>
+    {% if allpost|length < 1 %}    
+     Your search <b>-{{query}} -</b> did not match any post or Content.<br>
+Suggestions:<br>
+<ul>
+<li>Make sure that all words are spelled correctly.</li>
+<li>Try different keywords.</li>
+</ul>
+  {% endif %}
+
+  {% for item in allpost %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row  shadow-sm h-md-250 position-relative">
+        <div class="col-auto d-none d-lg-block">        
+            <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250" alt="{{item.title}}" />
+            <title>{{item.title}}</title><rect width="100%" height="100%" fill="#55595c"></rect>            
+         </div>
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary"> <a href="/blog/{{item.post_id}}/{{item.slug}}"> {{item.title}} </a> </strong>
+              <h3 class="mb-0">{{item.heading | truncatechars:100 }}</h3>
+              <div class="mb-1 text-muted">{{item.pub_date}} by {{item.author}}</div>
+              <p  class="card-text mb-auto" align="justify">{{item.text_details | truncatechars:500}}</p>
+              <div class="mt-2">
+              <a href="/blog/{{item.post_id}}/{{item.slug}}" class="btn btn-primary">Continue reading</a>
+              </div>
+            </div>        
+          
+        </div>
+      </div>
+      
+    </div>      
+  {% endfor %}  
+</div>
+
+{% endblock body %}
