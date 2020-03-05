@@ -1,2 +1,2 @@
 # blog
-Blog Created using python-Django and PostgeSQL database
+Blog Created using python-Django and PostgreSQL database
